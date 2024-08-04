@@ -149,7 +149,7 @@
           try {
             for (const file of fileInput.files) {
               const placeholder = document.createElement('span');
-              placeholder.textContent = `Processing ${file.name}...`;
+              placeholder.textContent = `处理 ${file.name}...`;
               downloadSection.appendChild(placeholder);
 
               const blob = await processFile(file);
@@ -158,7 +158,7 @@
               const link = document.createElement('a');
               link.href = URL.createObjectURL(blob);
               link.download = blob.name;
-              link.textContent = `Download ${blob.name} (${(blob.size / 1000 / 1000).toFixed(2)}MB)`;
+              link.textContent = `下载 ${blob.name} (${(blob.size / 1000 / 1000).toFixed(2)}MB)`;
               downloadSection.appendChild(link);
               link.click();
             }
@@ -169,7 +169,7 @@
             error.textContent = (e && e.stack) ? e.stack : e;
             downloadSection.appendChild(error);
 
-            alert(`An error occurred, please report this with the file you tried to unpackage.\n\n${e}`);
+            alert(`发生错误，请使用您尝试解包的文件报告此错误。\n\n${e}`);
           }
         };
 

@@ -25,7 +25,7 @@ var unpackage = (function() {
   const readAsText = (blob) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(new Error('Could not read blob as text'));
+    reader.onerror = () => reject(new Error('无法将 blob 解析为 text'));
     reader.readAsText(blob);
   });
 
@@ -55,7 +55,7 @@ var unpackage = (function() {
     } else if ('objName' in data) {
       return 'sb2';
     }
-    throw new Error('Can not determine project.json type');
+    throw new Error('无法确定 project.json 种类');
   };
 
   const decodeBase85WithLengthHeader = (str) => {
@@ -218,7 +218,7 @@ var unpackage = (function() {
   const decodeDataURI = (uri) => {
     const parts = uri.split(';base64,');
     if (parts.length < 2) {
-      throw new Error('Data URI is not base64');
+      throw new Error('Data URI 不是 base64');
     }
     const base64 = parts[1];
     return decodeBase64(base64);
@@ -327,7 +327,7 @@ var unpackage = (function() {
         return unpackageBinaryBlob(projectData);
       }
 
-      throw new Error('Input was a zip but we could not find a project.')
+      throw new Error('选择的文件是 zip，但无法从中找到作品。')
     }
 
     const text = await readAsText(blob);
@@ -425,7 +425,7 @@ var unpackage = (function() {
       };
     }
 
-    throw new Error('Input was not a zip and we could not find project.');
+    throw new Error('选择的文件不是 zip，且无法从中找到作品。');
   };
 
   return unpackage;
